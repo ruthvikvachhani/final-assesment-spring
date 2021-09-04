@@ -20,7 +20,7 @@ public class AnswerEntity {
 	private String answer;
 	
 	@ManyToOne
-	private Integer questionId;
+	private QuestionEntity queId;
 
 
 	public String getAnswer() {

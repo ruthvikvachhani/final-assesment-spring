@@ -26,6 +26,7 @@ public class UserController {
 
 	@GetMapping("/user")
 	public Iterable<UserEntity> getAllUser() {
+		System.out.println("working");
 		return userService. getAllUser();
 	}
 	

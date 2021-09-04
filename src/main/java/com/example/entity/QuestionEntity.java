@@ -25,7 +25,6 @@ public class QuestionEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer queId;
 	
-	@NotNull
 	@Column(name = "vote")
 	private Integer vote;
 	
@@ -35,8 +34,7 @@ public class QuestionEntity {
 	private String Que;
 	
 	@ManyToOne
-	@Column(name = "UserId")
-	private Integer userId;
+	private UserEntity userId;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "questionId")
@@ -44,7 +42,7 @@ public class QuestionEntity {
 	
 	
 	public Integer getVote() {
-		return vote;
+		return this.vote;
 	}
 
 	public void setVote(Integer vote) {
@@ -52,15 +50,15 @@ public class QuestionEntity {
 	}
 
 	public String getQue() {
-		return Que;
+		return this.Que;
 	}
 
 	public void setQue(String que) {
-		Que = que;
+		this.Que = que;
 	}
 
 	public Set<AnswerEntity> getAns() {
-		return ans;
+		return this.ans;
 	}
 
 	public void setAns(Set<AnswerEntity> ans) {

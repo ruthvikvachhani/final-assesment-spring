@@ -20,7 +20,7 @@ public class AnswerController {
 	IAnswerService ansService;
 	
 	@PostMapping("/ans")
-	public AnswerEntity createUser(@RequestBody AnswerEntity ans) {
+	public AnswerEntity createAnswer(@RequestBody AnswerEntity ans) {
 		return ansService.createAnswer(ans);
 	}
 
@@ -29,12 +29,12 @@ public class AnswerController {
 		return ansService. getAllAnswer();
 	}
 	
-	@GetMapping("/user/{id}")
+	@GetMapping("/ans/{id}")
 	public Optional<AnswerEntity> getAnswer(@PathVariable Integer id) {
 		return ansService. getAnswer(id);
 	}
 	
-	@DeleteMapping("/user/{id}")
+	@DeleteMapping("/ans/{id}")
 	public void deleteAnswer(@PathVariable Integer id) {
 		ansService.deleteAnswer(id);
 	}
