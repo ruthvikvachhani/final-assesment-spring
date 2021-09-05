@@ -35,11 +35,14 @@ public class QuestionService implements IQuestionService{
 	}
 
 	@Override
-	public void upvote(QuestionEntity ques, Integer id) {
+	public void upvote(Integer id) {
 		Optional<QuestionEntity> question = queRepo.findById(id);
-		int vote=  question.get().getVote();
-		question.get().setVote(vote+1);
+		QuestionEntity ques =  question.get();
+		System.out.println(ques.getVote());
+		ques.setVote(ques.getVote()+1);
+		queRepo.save(ques);
 		
+		System.out.println(ques.getVote());
 	}
 
 	

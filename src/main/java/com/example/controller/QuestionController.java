@@ -42,7 +42,7 @@ public class QuestionController {
 	}
 
 	@PutMapping("/que/increment/{id}")
-	public void upvote(@RequestBody QuestionEntity ques ,@PathVariable Integer id) {
-		queService.upvote(ques,id);
+	public void upvote(@PathVariable Integer id) {
+		queService.upvote(id);
 	}
 }

@@ -15,5 +15,5 @@ public interface IQuestionService {
 	
 	void deleteQuestion(Integer id);
 	
-	void upvote(QuestionEntity ques, Integer id);
+	void upvote(Integer id);
 }

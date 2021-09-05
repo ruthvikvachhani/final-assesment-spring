@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -26,18 +26,15 @@ public class QuestionEntity {
 	private Integer queId;
 	
 	@Column(name = "vote")
-	private Integer vote;
+	private Integer vote = 0;
 	
 	@NotNull
 	@Size(min=2,message="question should be gretaer the 2 characters")
 	@Column(name = "Question")
-	private String Que;
-	
-	@ManyToOne
-	private UserEntity userId;
+	private String que;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "questionId")
+	@JoinTable(name = "QUESTION_ANSWER", joinColumns ={@JoinColumn( name = "queEntity", referencedColumnName = "queId")}, inverseJoinColumns={@JoinColumn(name = "answerEntity",referencedColumnName = "answerId")} )
 	private Set<AnswerEntity> ans;
 	
 	
@@ -50,11 +47,11 @@ public class QuestionEntity {
 	}
 
 	public String getQue() {
-		return this.Que;
+		return this.que;
 	}
 
 	public void setQue(String que) {
-		this.Que = que;
+		this.que = que;
 	}
 
 	public Set<AnswerEntity> getAns() {

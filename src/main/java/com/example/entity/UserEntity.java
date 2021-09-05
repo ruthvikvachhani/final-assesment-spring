@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -22,7 +23,7 @@ public class UserEntity {
 	private String Name;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "userId")
+	@JoinTable(name = "USER_QUESTION", joinColumns ={@JoinColumn( name = "UserEntity", referencedColumnName = "userId")}, inverseJoinColumns={@JoinColumn(name = "questionEntity",referencedColumnName = "queId")} )
 	private Set<QuestionEntity> question;
 
 	public String getName() {
@@ -31,6 +32,14 @@ public class UserEntity {
 
 	public void setName(String name) {
 		this.Name = name;
+	}
+
+	public Set<QuestionEntity> getQuestion() {
+		return this.question;
+	}
+
+	public void setQuestion(Set<QuestionEntity> question) {
+		this.question = question;
 	}
 	
 	
