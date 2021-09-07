@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @Entity
@@ -23,6 +25,7 @@ public class QuestionEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonIgnore
 	private Integer queId;
 	
 	@Column(name = "vote")
@@ -35,9 +38,18 @@ public class QuestionEntity {
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "QUESTION_ANSWER", joinColumns ={@JoinColumn( name = "queEntity", referencedColumnName = "queId")}, inverseJoinColumns={@JoinColumn(name = "answerEntity",referencedColumnName = "answerId")} )
+	@JsonIgnore
 	private Set<AnswerEntity> ans;
 	
 	
+	public Integer getQueId() {
+		return queId;
+	}
+
+	public void setQueId(Integer queId) {
+		this.queId = queId;
+	}
+
 	public Integer getVote() {
 		return this.vote;
 	}

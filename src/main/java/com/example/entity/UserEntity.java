@@ -12,19 +12,32 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class UserEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonIgnore
 	private Integer userId;
 	
 	@NotNull
 	private String Name;
 	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "USER_QUESTION", joinColumns ={@JoinColumn( name = "UserEntity", referencedColumnName = "userId")}, inverseJoinColumns={@JoinColumn(name = "questionEntity",referencedColumnName = "queId")} )
 	private Set<QuestionEntity> question;
+
+	
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
 
 	public String getName() {
 		return this.Name;

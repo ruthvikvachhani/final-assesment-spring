@@ -18,6 +18,17 @@ public class AnswerEntity {
 	@Size(min=2,message="answer should be gretaer the 2 characters")
 	private String answer;
 
+	
+
+	public Integer getAnswerId() {
+		return answerId;
+	}
+
+
+	public void setAnswerId(Integer answerId) {
+		this.answerId = answerId;
+	}
+
 
 	public String getAnswer() {
 		return this.answer;
